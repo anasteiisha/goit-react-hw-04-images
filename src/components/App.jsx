@@ -76,6 +76,7 @@ export const App = () => {
   return (
     <>
       <Searchbar onSubmit={onSubmit} />
+      {error && <p>Error: {error.message}</p>}
       {hits.length > 0 && (
         <ImageGallery hits={hits} handleClickOnImg={handleClickOnImg} />
       )}
@@ -87,6 +88,7 @@ export const App = () => {
           isShowModal={isShowModal}
           onCloseModal={onCloseModal}
           largeImageURL={largeImageURL}
+          tags={tags}
         />
       )}
     </>
