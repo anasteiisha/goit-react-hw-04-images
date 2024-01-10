@@ -15,7 +15,6 @@ export const App = () => {
   const [searchValue, setSearchValue] = useState('');
   const [hits, setHits] = useState([]);
   const [page, setPage] = useState(1);
-  const [error, setError] = useState(null);
   const [isVisibleLoadMoreBtn, setIsVisibleLoadMoreBtn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [largeImageURL, setLargeImageURL] = useState('');
@@ -40,7 +39,7 @@ export const App = () => {
 
         setHits(prevHits => [...prevHits, ...makeNormalizeDataImg(hits)]);
       } catch (error) {
-        setError(error);
+        console.log('ERROR', error);
       } finally {
         setIsLoading(false);
       }
@@ -54,7 +53,6 @@ export const App = () => {
     setSearchValue(searchValue);
     setPage(1);
     setHits([]);
-    setError(null);
     setLargeImageURL('');
     setTags('');
     setIsShowModal(false);
@@ -76,7 +74,7 @@ export const App = () => {
   return (
     <>
       <Searchbar onSubmit={onSubmit} />
-      {error && <p>Error: {error.message}</p>}
+
       {hits.length > 0 && (
         <ImageGallery hits={hits} handleClickOnImg={handleClickOnImg} />
       )}
